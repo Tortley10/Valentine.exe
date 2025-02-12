@@ -4,6 +4,35 @@ let minigameDiv = document.getElementById("minigame");
 let codeContainer = document.getElementById("code-container");
 let message = document.getElementById("message");
 
+// Function to save progress
+function saveProgress() {
+    const gameState = {
+        dialogue: dialogueBox.textContent,
+        choices: choicesDiv.innerHTML,
+        playerSequence: playerSequence,
+        shuffledSequence: shuffledSequence,
+        minigameActive: minigameDiv.style.display === "block"
+    };
+    localStorage.setItem("valentinaGameState", JSON.stringify(gameState));
+}
+
+// Function to load progress
+function loadProgress() {
+    const savedState = localStorage.getItem("valentinaGameState");
+    if (savedState) {
+        const gameState = JSON.parse(savedState);
+
+        dialogueBox.textContent = gameState.dialogue;
+        choicesDiv.innerHTML = gameState.choices;
+        playerSequence = gameState.playerSequence || [];
+        shuffledSequence = gameState.shuffledSequence || [...correctSequence].sort(() => Math.random() - 0.5);
+        
+        if (gameState.minigameActive) {
+            startMinigame();
+        }
+    }
+}
+
 
 function startGame() {
     setTimeout(() => {
@@ -35,9 +64,11 @@ function updateDialogue(text, choices) {
             } else {
                 updateDialogue(choice.next, getNextChoices(choice.next));
             }
+            saveProgress()
         };
         choicesDiv.appendChild(button);
     });
+    saveProgress()
 }
 
 
@@ -102,6 +133,7 @@ function checkSolution() {
         message.textContent = "Error: Corrupted Sequence. Try again.";
         resetPuzzle();
     }
+    saveProgress()
 }
 
 function resetPuzzle() {
@@ -109,6 +141,8 @@ function resetPuzzle() {
     shuffledSequence = [...correctSequence].sort(() => Math.random() - 0.5);
     renderMinigame();
 }
+
+window.onload = loadProgress();
 
 
 startGame();
