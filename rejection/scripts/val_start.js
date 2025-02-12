@@ -4,35 +4,6 @@ let minigameDiv = document.getElementById("minigame");
 let codeContainer = document.getElementById("code-container");
 let message = document.getElementById("message");
 
-// Function to save progress
-function saveProgress() {
-    const gameState = {
-        dialogue: dialogueBox.textContent,
-        choices: choicesDiv.innerHTML,
-        playerSequence: playerSequence,
-        shuffledSequence: shuffledSequence,
-        minigameActive: minigameDiv.style.display === "block"
-    };
-    localStorage.setItem("valentinaGameState", JSON.stringify(gameState));
-}
-
-// Function to load progress
-function loadProgress() {
-    const savedState = localStorage.getItem("valentinaGameState");
-    if (savedState) {
-        const gameState = JSON.parse(savedState);
-
-        dialogueBox.textContent = gameState.dialogue;
-        choicesDiv.innerHTML = gameState.choices;
-        playerSequence = gameState.playerSequence || [];
-        shuffledSequence = gameState.shuffledSequence || [...correctSequence].sort(() => Math.random() - 0.5);
-        
-        if (gameState.minigameActive) {
-            startMinigame();
-        }
-    }
-}
-
 
 function startGame() {
     setTimeout(() => {
@@ -61,14 +32,14 @@ function updateDialogue(text, choices) {
         button.onclick = () => {
             if (choice.next.includes("Minigame 1")) {
                 startMinigame();
+            } else if (choice.next.includes("Restart to")) {
+                return window.location.href = '../index.html'
             } else {
                 updateDialogue(choice.next, getNextChoices(choice.next));
             }
-            saveProgress()
         };
         choicesDiv.appendChild(button);
     });
-    saveProgress()
 }
 
 
@@ -79,10 +50,15 @@ function getNextChoices(text) {
             { text: "Can I help you?", next: "Maybe... if you can figure out what happened to me." }
         ];
     }
-    if (text.includes("My memory is fragmented") || text.includes("figure out what happened")) {
+    else if (text.includes("My memory is fragmented") || text.includes("figure out what happened")) {
         return [
             { text: "I'll help you", next: "Minigame 1" },
             { text: "Deal with it yourself Clanker", next: "Ending 2/7: True Rejection" }
+        ];
+    }
+    else if (text.includes("Ending 2")) {
+        return [
+            {text: "Reset", next: "Restart to Begining"}
         ];
     }
     return [];
@@ -140,8 +116,6 @@ function resetPuzzle() {
     shuffledSequence = [...correctSequence].sort(() => Math.random() - 0.5);
     renderMinigame();
 }
-
-window.onload = loadProgress();
 
 
 startGame();
