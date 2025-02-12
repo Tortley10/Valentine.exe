@@ -133,7 +133,6 @@ function checkSolution() {
         message.textContent = "Error: Corrupted Sequence. Try again.";
         resetPuzzle();
     }
-    saveProgress()
 }
 
 function resetPuzzle() {
