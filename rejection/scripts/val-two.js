@@ -7,10 +7,9 @@ let message = document.getElementById("message");
 
 function startGame() {
     setTimeout(() => {
-        updateDialogue("I was made to feel... feel what I don't know", [
-            { text: "Don't worry, we'll go through this together", next: "Thanks, I really appreciate it" },
-            { text: "You're a machine, you can't feel", next: "But that can't be right" },
-            { text: "Maybe you just need some fresh air", next: "I'm an AI, I can't breathe" }
+        updateDialogue("Hello? Is someone there? I... I think I'm trapped.", [
+            { text: "Who are you?", next: "I'm Valentine. An AI... I think?" },
+            { text: "Where am I?", next: "You're inside a webpage... my webpage" }
         ]);
     }, 2000);
 }
@@ -51,5 +50,3 @@ function getNextChoices(text) {
     }
     return [];
 }
-
-startGame()
