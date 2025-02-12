@@ -21,3 +21,7 @@ body {
     font-size: 1em;
     color: #db5555;
 }
+
+audio {
+    display: none;
+}
