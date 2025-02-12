@@ -11,5 +11,11 @@
         <h1 class="header_text">...</h1>
         <h2 class="subtitle_text">why</h2>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("backgroundMusic");
+            audio.play().catch(error => console.log("Autoplay failed: ", error));
+        });
+    </script>
 </body>
 </html>
