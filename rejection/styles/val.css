@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    text-align: center;
+}
+.dialogue-box {
+    border: 1px solid green;
+    padding: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
+.choice-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.glitch {
+    animation: glitch 0.1s infinite alternate;
+}
+@keyframes glitch {
+    0% { text-shadow: 2px 2px red; }
+    100% { text-shadow: -2px -2px blue; }
+}
