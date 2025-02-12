@@ -35,7 +35,7 @@ body {
   }
   
   audio {
-    display: none;
+    display: block;
     width: 300px;
     height: 54px;
     margin: 0 auto;
