@@ -78,3 +78,10 @@ body {
   audio::-webkit-media-controls-toggle-closed-captions-button {
     display: none;
   }
+
+  .ending {
+    font-size: 1em;
+    color: #db5555;
+    margin-bottom: 1em;
+    font-weight: bold;
+  }

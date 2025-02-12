@@ -22,8 +22,13 @@ body {
     color: #5f8ce1;
 }
 
-.gif_container img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
-}
+.answer-button {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
