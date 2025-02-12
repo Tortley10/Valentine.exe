@@ -21,3 +21,9 @@ body {
     font-size: 1em;
     color: #5f8ce1;
 }
+
+.gif_container img {
+    width: 100%; 
+    max-width: 500px; 
+    height: auto; 
+}

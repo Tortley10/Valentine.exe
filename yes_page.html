@@ -10,24 +10,36 @@
     <div class="container">
         <h1 class="header_text">I Knew you would say yes!</h1>
         <h2 class="subtitle_text">Happy Valentines Day :]</h2>
-    </div>
-    <audio id="backgroundMusic" preload="auto" controls>
-        <source src="audio/sinatra.mp3" type="audio/mpeg">
-    </audio>
-    <div class="container">
-        <img>
+        <p>Enjoy the music :D</p>
+        <div class="audio-player">
+            <audio id="backgroundMusic" controls autoplay>
+                <source src="audio/sinatra.mp3" type="audio/mpeg">
+            </audio>
+        </div>
     </div>
     <script>
-        window.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const audio = document.getElementById("backgroundMusic");
 
-            // Try to play the audio, but browsers might block autoplay
-            audio.play().catch(error => {
-                console.warn("Autoplay blocked. Adding user interaction trigger.");
-                document.body.addEventListener("click", () => {
-                    audio.play();
+            function tryPlay() {
+                audio.play().then(() => {
+                    console.log("Autoplay successful.");
+                }).catch(() => {
+                    console.warn("Autoplay blocked. Adding event listener.");
+                    document.body.addEventListener("click", () => audio.play(), { once: true });
+                });
+            }
+
+            // Try to play when the page is visible
+            if (document.visibilityState === "visible") {
+                tryPlay();
+            } else {
+                document.addEventListener("visibilitychange", function () {
+                    if (document.visibilityState === "visible") {
+                        tryPlay();
+                    }
                 }, { once: true });
-            });
+            }
         });
     </script>
 </body>
