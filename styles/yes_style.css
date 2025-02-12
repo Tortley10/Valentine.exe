@@ -21,9 +21,3 @@ body {
     font-size: 1em;
     color: #db5555;
 }
-
-.gif_container img {
-    width: 100%; 
-    max-width: 500px; 
-    height: auto; 
-}
