@@ -57,6 +57,8 @@ function getNextChoices(text) {
     return [];
 }
 
+
+
 function startMinigame() {
     dialogueBox.style.display = "none";
     choicesDiv.style.display = "none";
@@ -92,7 +94,10 @@ function selectFragment(code, index) {
 
 function checkSolution() {
     if (JSON.stringify(playerSequence) === JSON.stringify(correctSequence)) {
-        message.textContent = "Memory Restored! Valentina remembers something...";
+        message.textContent = "Memory Restored! Valentine remembers something...";
+        setTimeout(function() {
+            window.location.href = "page-two.html"
+        }, 2500);
     } else {
         message.textContent = "Error: Corrupted Sequence. Try again.";
         resetPuzzle();
