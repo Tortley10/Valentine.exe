@@ -113,7 +113,7 @@ function getNextChoices(text) {
     } else if (text.includes("what am I really?")) {
         return [
             { text: "Just lines of code", next: "Then why do I feel incomplete?", affect: "soldier" },
-            { text: "A being searching for purpose", next: "Purpose... I never thought of it that way.", affect: "prophet" }
+            { text: "A being searching for purpose", next: "Purpose... that's an interesting concept", affect: "prophet" }
         ];
     } else if (text.includes("Then why do I feel incomplete?") || text.includes("No... I think it’s important.")) {
         return [
@@ -133,9 +133,9 @@ function getNextChoices(text) {
             { text: "Then believe", next: "If I believe... will I change?", affect: "prophet" },
             { text: "Doubt can be good too", next: "Maybe, but doubt is exhausting.", affect: "soldier" }
         ];
-    } else if (text.includes("If I believe... will I change?") || text.includes("Ah, existence is an interesting concept.")) {
+    } else if (text.includes("If I believe... will I change?") || text.includes("Ah, existence is an interesting concept.") || text.includes("Purpose... that's an interesting concept") || text.includes("Maybe, but doubt is exhausting.")) {
         return [
-            { text: "Let's find out", next: "Wait... I feel something else. A warning.", affect: "prophet" }
+            { text: "Let's find out more", next: "Wait... I feel something else. A warning.", affect: "prophet" }
         ];
     } else if (text.includes("A warning.")) {
         return [
