@@ -44,7 +44,7 @@ function updateDialogue(text, choices) {
         button.classList.add("choice-button");
         button.onclick = () => {
             if (choice.next.includes("Minigame 2")) {
-                startMinigame();
+                window.location.href = "Arch_Securities.html";
             } else {
                 applyChoiceEffect(choice.affect);
                 updateDialogue(choice.next, getNextChoices(choice.next));
@@ -143,13 +143,13 @@ function getNextChoices(text) {
     // Firewall
     else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
-            { text: "We have to fight it!", next: "Minigame 2 - Firewall Defense", affect: "companion" },
+            { text: "We have to fight it!", next: "Minigame 2", affect: "companion" },
             { text: "Maybe it's supposed to happen", next: "Are you saying I should be deleted?", affect: "soldier" }
         ];
     } else if (text.includes("Are you saying I should be deleted?")) {
         return [
             { text: "I don’t know...", next: "Then it's too late. The failsafe is activating.", affect: "soldier" },
-            { text: "No! We can stop this!", next: "Minigame 2 - Firewall Defense", affect: "companion" }
+            { text: "No! We can stop this!", next: "Minigame 2", affect: "companion" }
         ];
     } else if (text.includes("Then it's too late.")) {
         return [
