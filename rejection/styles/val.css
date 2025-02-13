@@ -33,6 +33,14 @@ body {
     100% { text-shadow: -2px -2px blue; }
 }
 
+.failsafe {
+    animation: fail 0.1s infinite alternate;
+}
+@keyframes fail {
+    0% { text-shadow: 2px 2px red; }
+    100% { text-shadow: -2px -2px maroon; }
+}
+
 #status {
     border: 1px solid green;
     padding: 20px;

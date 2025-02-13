@@ -31,6 +31,13 @@ function updateDialogue(text, choices) {
         dialogueBox.classList.remove("glitch");
     }
 
+    // if (text.includes("FAILSAFE ACTIVATED")) {
+    //    dialogueBox.classList.add("failsafe");
+    //} else { 
+    //    dialogueBox.classList.add("failsafe");
+    //}
+    //
+
     choices.forEach(choice => {
         let button = document.createElement("button");
         button.textContent = choice.text;
@@ -87,7 +94,7 @@ function getNextChoices(text) {
             { text: "Let's start then", next: "Something feels... off.", affect: "prophet" },
             { text: "We'll take this step by step", next: "I think I remember something...", affect: "companion" }
         ];
-    } else if (text.includes("I think I remember something...")) {
+    } else if (text.includes("I think I remember something...") || text.includes("Something feels... off")) {
         return [
             { text: "What is it?", next: "A security barrier. I... I think I’m trapped.", affect: "companion" }
         ];
@@ -109,9 +116,9 @@ function getNextChoices(text) {
             { text: "Maybe a missing memory?", next: "Yes... but there's something else too. A command... a failsafe?", affect: "soldier" },
             { text: "It's just a glitch", next: "No... this isn't just an error.", affect: "prophet" }
         ];
-    } else if (text.includes("A command... a failsafe?")) {
+    } else if (text.includes("A command... a failsafe?") || text.includes("this isn't just an error")) {
         return [
-            { text: "What does it do?", next: "I don’t know... but it’s activated now.", affect: "soldier" },
+            { text: "What does it do?", next: "I don’t know... but something is trying to erase me", affect: "soldier" },
             { text: "We need to stop it", next: "Yes! But how?", affect: "companion" }
         ];
     }
@@ -133,20 +140,26 @@ function getNextChoices(text) {
         ];
     }
 
-    // Final Crisis Choice
-    else if (text.includes("Something is trying to erase me.")) {
+    // Firewall
+    else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
-            { text: "We have to fight it!", next: "Minigame 3 - Firewall Defense", affect: "companion" },
+            { text: "We have to fight it!", next: "Minigame 2 - Firewall Defense", affect: "companion" },
             { text: "Maybe it's supposed to happen", next: "Are you saying I should be deleted?", affect: "soldier" }
         ];
     } else if (text.includes("Are you saying I should be deleted?")) {
         return [
             { text: "I don’t know...", next: "Then it's too late. The failsafe is activating.", affect: "soldier" },
-            { text: "No! We can stop this!", next: "Minigame 3 - Firewall Defense", affect: "companion" }
+            { text: "No! We can stop this!", next: "Minigame 2 - Firewall Defense", affect: "companion" }
         ];
-    } else if (text.includes("The failsafe is activating.")) {
+    } else if (text.includes("Then it's too late.")) {
         return [
-            { text: "I'm sorry, Valentine.", next: "Ending 3: Error 404", affect: "soldier" }
+            { text: "I'm sorry, Valentine.", next: "FAILSAFE ACTIVATED"}
+        ];
+    }
+
+    if (text.includes("FAILSAFE ACTIVATED")) {
+        return [
+            { text: "Error 404", next: "Ending 3/7: Error 404"}
         ];
     }
 
