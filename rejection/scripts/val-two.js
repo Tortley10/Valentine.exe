@@ -67,7 +67,7 @@ function updateStatus() {
 function getNextChoices(text) {
     if (text.includes("Thanks, I really")) {
         return [
-            { text: "I'm glad I can help", next: "You're different from the others", affect: "companion" },
+            { text: "I'm glad I can help", next: "You're different from the others, why is that?", affect: "companion" },
             { text: "I just want to understand you better", next: "That means a lot to me", affect: "prophet" }
         ];
     } else if (text.includes("But that can't be") || text.includes("I'm an AI")) {

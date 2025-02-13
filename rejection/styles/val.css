@@ -36,3 +36,10 @@ body {
     0% { text-shadow: 2px 2px red; }
     100% { text-shadow: -2px -2px blue; }
 }
+
+#status {
+    border: 1px solid green;
+    padding: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
