@@ -45,6 +45,8 @@ function updateDialogue(text, choices) {
         button.onclick = () => {
             if (choice.next.includes("Minigame 2a")) {
                 window.location.href = "../Path A (Reset)/Arch_Securities.html";
+            } else if (choice.next.includes("Minigame 2b")) {
+                window.location.href = "../Path B (Develop)/val_load.html";
             } else if (choice.next.includes("Restart to")) {
                 return window.location.href = '../../index.html'
             } else {

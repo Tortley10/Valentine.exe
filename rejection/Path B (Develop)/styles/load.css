@@ -94,7 +94,17 @@ h1 {
     color: #ff0000;
     font-family: 'Courier New', monospace;
     text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    animation: blink 1.5s infinite;
+    white-space: nowrap;
+    margin: 0;
+}
+
+p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    animation: blink 2.0s infinite;
     white-space: nowrap;
     margin: 0;
 }
