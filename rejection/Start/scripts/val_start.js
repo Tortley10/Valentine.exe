@@ -33,7 +33,7 @@ function updateDialogue(text, choices) {
             if (choice.next.includes("Minigame 1")) {
                 startMinigame();
             } else if (choice.next.includes("Restart to")) {
-                return window.location.href = '../index.html'
+                return window.location.href = '../../index.html'
             } else {
                 updateDialogue(choice.next, getNextChoices(choice.next));
             }

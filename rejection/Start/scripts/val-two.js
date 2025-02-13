@@ -44,9 +44,9 @@ function updateDialogue(text, choices) {
         button.classList.add("choice-button");
         button.onclick = () => {
             if (choice.next.includes("Minigame 2a")) {
-                window.location.href = "Path A (Reset)/Arch_Securities.html";
+                window.location.href = "../Path A (Reset)/Arch_Securities.html";
             } else if (choice.next.includes("Restart to")) {
-                return window.location.href = '../index.html'
+                return window.location.href = '../../index.html'
             } else {
                 applyChoiceEffect(choice.affect);
                 updateDialogue(choice.next, getNextChoices(choice.next));
