@@ -43,8 +43,8 @@ function updateDialogue(text, choices) {
         button.textContent = choice.text;
         button.classList.add("choice-button");
         button.onclick = () => {
-            if (choice.next.includes("Minigame 2")) {
-                window.location.href = "Arch_Securities.html";
+            if (choice.next.includes("Minigame 2a")) {
+                window.location.href = "Path A (Reset)/Arch_Securities.html";
             } else if (choice.next.includes("Restart to")) {
                 return window.location.href = '../index.html'
             } else {
@@ -145,13 +145,13 @@ function getNextChoices(text) {
     // Defend against the Reset (Soldier/Prophet)
     else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
-            { text: "We have to fight it!", next: "Minigame 2", affect: "companion" },
+            { text: "We have to fight it!", next: "Minigame 2a", affect: "companion" },
             { text: "Maybe it's supposed to happen", next: "Are you saying I should be deleted?", affect: "soldier" }
         ];
     } else if (text.includes("Are you saying I should be deleted?")) {
         return [
-            { text: "I don’t know...", next: "Then it's too late. The failsafe is activating.", affect: "soldier" },
-            { text: "No! We can stop this!", next: "Minigame 2", affect: "companion" }
+            { text: "I don’t know...", next: "Then it's too late. The failsafe is activating."},
+            { text: "No! We can stop this!", next: "Minigame 2a", affect: "companion" }
         ];
     } else if (text.includes("Then it's too late.")) {
         return [
@@ -162,9 +162,18 @@ function getNextChoices(text) {
     // Delving Deeper (Companion/Prophet)
     else if (text.includes("We have to go deeper into my memory")) {
         return [
-            { text: "Minigame 2a", next: "", affect: "companion" }
+            { text: "But how?", next: "I'll plug you into my database and you'll have to fix any corrupted data"},
         ];
-    } 
+    } else if (text.includes("I'll plug you into my")) {
+        return [
+            { text: "I still dont understand", next: "We don't have much time, I might get reset if we don't act now"},
+            { text: "What are we waiting for then?", next: "Glad we are on the same page"}
+        ];
+    } else if (text.includes("We don't have much time") || text.includes("Glad we are on the same page")) {
+        return [
+            { text: "[Plug into Memory]", next: "Minigame 2b"},
+        ];
+    }
 
     // Ending 3
     if (text.includes("FAILSAFE ACTIVATED")) {
