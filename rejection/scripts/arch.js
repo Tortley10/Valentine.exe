@@ -48,7 +48,7 @@
            logo.addEventListener('mouseover', () => {
                wings.forEach(wing => {
                    wing.style.transition = 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out';
-                   wing.style.boxShadow = '0 0 20px #00ff00';
+                   wing.style.boxShadow = '0 0 20px #ff0000';
                    if (wing.classList.contains('wing-left')) {
                        wing.style.transform = 'translateY(-50%) rotate(-30deg)';
                    } else {
@@ -57,7 +57,7 @@
                });
                letter.style.transition = 'transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out';
                letter.style.transform = 'translate(-50%, -50%) scale(1.1)';
-               letter.style.textShadow = '0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00';
+               letter.style.textShadow = '0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000';
            });
 
            logo.addEventListener('mouseout', () => {
@@ -70,6 +70,6 @@
                    }
                });
                letter.style.transform = 'translate(-50%, -50%) scale(1)';
-               letter.style.textShadow = '0 0 10px #00ff00, 0 0 20px #00ff00';
+               letter.style.textShadow = '0 0 10px #ff0000, 0 0 20px #ff0000';
            });
        });

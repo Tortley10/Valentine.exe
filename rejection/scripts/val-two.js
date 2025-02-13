@@ -31,12 +31,12 @@ function updateDialogue(text, choices) {
         dialogueBox.classList.remove("glitch");
     }
 
-    // if (text.includes("FAILSAFE ACTIVATED")) {
+    //if (choice.next.includes("FAILSAFE ACTIVATED")) {
     //    dialogueBox.classList.add("failsafe");
     //} else { 
     //    dialogueBox.classList.add("failsafe");
     //}
-    //
+    
 
     choices.forEach(choice => {
         let button = document.createElement("button");
@@ -87,7 +87,7 @@ function getNextChoices(text) {
     } else if (text.includes("Matter...")) {
         return [
             { text: "It means that I want to help you figure out your past", next: "Oh, that makes sense.", affect: "companion" },
-            { text: "It means you exist as a being", next: "Ah, existence is an interesting concept.", affect: "prophet" }
+            { text: "It means you exist as a being", next: "Ah, existence is an interesting concept. I'd like to know more about it", affect: "prophet" }
         ];
     } else if (text.includes("Then we have the same goal.")) {
         return [
@@ -129,7 +129,7 @@ function getNextChoices(text) {
             { text: "Then believe", next: "If I believe... will I change?", affect: "prophet" },
             { text: "Doubt can be good too", next: "Maybe, but doubt is exhausting.", affect: "soldier" }
         ];
-    } else if (text.includes("If I believe... will I change?")) {
+    } else if (text.includes("If I believe... will I change?") || text.includes("Ah, existence is an interesting concept.")) {
         return [
             { text: "Let's find out", next: "Wait... I feel something else. A warning.", affect: "prophet" }
         ];
@@ -140,7 +140,7 @@ function getNextChoices(text) {
         ];
     }
 
-    // Firewall
+    // Defend against the Reset ()
     else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
             { text: "We have to fight it!", next: "Minigame 2", affect: "companion" },
@@ -157,6 +157,10 @@ function getNextChoices(text) {
         ];
     }
 
+    // Delving Deeper (Compainion Path)
+
+
+    // Ending 3
     if (text.includes("FAILSAFE ACTIVATED")) {
         return [
             { text: "Error 404", next: "Ending 3/7: Error 404"}
