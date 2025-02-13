@@ -91,7 +91,7 @@ function getNextChoices(text) {
             { text: "It means that I want to help you figure out your past", next: "Oh, that makes sense.", affect: "companion" },
             { text: "It means you exist as a being", next: "Ah, existence is an interesting concept. I'd like to know more about it", affect: "prophet" }
         ];
-    } else if (text.includes("Then we have the same goal.") || text.includes("Oh, that makes sense")) {
+    } else if (text.includes("Then we have the same goal.") || text.includes("Oh, that makes sense") || text.includes("I... I'm not sure, but I want to find out")) {
         return [
             { text: "Let's start then", next: "Something feels... off.", affect: "prophet" },
             { text: "We'll take this step by step", next: "I think I remember something...", affect: "companion" }
@@ -160,7 +160,11 @@ function getNextChoices(text) {
     } 
 
     // Delving Deeper (Companion/Prophet)
-
+    else if (text.includes("We have to go deeper into my memory")) {
+        return [
+            { text: "Minigame 2a", next: "", affect: "companion" }
+        ];
+    } 
 
     // Ending 3
     if (text.includes("FAILSAFE ACTIVATED")) {
