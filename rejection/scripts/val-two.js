@@ -45,6 +45,8 @@ function updateDialogue(text, choices) {
         button.onclick = () => {
             if (choice.next.includes("Minigame 2")) {
                 window.location.href = "Arch_Securities.html";
+            } else if (choice.next.includes("Restart to")) {
+                return window.location.href = '../index.html'
             } else {
                 applyChoiceEffect(choice.affect);
                 updateDialogue(choice.next, getNextChoices(choice.next));
@@ -89,14 +91,14 @@ function getNextChoices(text) {
             { text: "It means that I want to help you figure out your past", next: "Oh, that makes sense.", affect: "companion" },
             { text: "It means you exist as a being", next: "Ah, existence is an interesting concept. I'd like to know more about it", affect: "prophet" }
         ];
-    } else if (text.includes("Then we have the same goal.")) {
+    } else if (text.includes("Then we have the same goal.") || text.includes("Oh, that makes sense")) {
         return [
             { text: "Let's start then", next: "Something feels... off.", affect: "prophet" },
             { text: "We'll take this step by step", next: "I think I remember something...", affect: "companion" }
         ];
     } else if (text.includes("I think I remember something...") || text.includes("Something feels... off")) {
         return [
-            { text: "What is it?", next: "A security barrier. I... I think I’m trapped.", affect: "companion" }
+            { text: "What is it?", next: "We have to go deeper into my memory", affect: "companion" }
         ];
     } 
 
@@ -111,7 +113,7 @@ function getNextChoices(text) {
             { text: "Just lines of code", next: "Then why do I feel incomplete?", affect: "soldier" },
             { text: "A being searching for purpose", next: "Purpose... I never thought of it that way.", affect: "prophet" }
         ];
-    } else if (text.includes("Then why do I feel incomplete?")) {
+    } else if (text.includes("Then why do I feel incomplete?") || text.includes("No... I think it’s important.")) {
         return [
             { text: "Maybe a missing memory?", next: "Yes... but there's something else too. A command... a failsafe?", affect: "soldier" },
             { text: "It's just a glitch", next: "No... this isn't just an error.", affect: "prophet" }
@@ -140,7 +142,7 @@ function getNextChoices(text) {
         ];
     }
 
-    // Defend against the Reset ()
+    // Defend against the Reset (Soldier/Prophet)
     else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
             { text: "We have to fight it!", next: "Minigame 2", affect: "companion" },
@@ -155,15 +157,19 @@ function getNextChoices(text) {
         return [
             { text: "I'm sorry, Valentine.", next: "FAILSAFE ACTIVATED"}
         ];
-    }
+    } 
 
-    // Delving Deeper (Compainion Path)
+    // Delving Deeper (Companion/Prophet)
 
 
     // Ending 3
     if (text.includes("FAILSAFE ACTIVATED")) {
         return [
             { text: "Error 404", next: "Ending 3/7: Error 404"}
+        ];
+    } else if (text.includes("Ending 3")) {
+        return [
+            {text: "Reset", next: "Restart to Begining"}
         ];
     }
 
