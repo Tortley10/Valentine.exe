@@ -163,6 +163,12 @@ function getNextChoices(text) {
         ];
     }
 
+    else {
+        return [
+            { text: "[DEBUG] Players are not meant to see this", next: "Pls tell me of this bug"}
+        ];
+    }
+
     return [];
 }
 
