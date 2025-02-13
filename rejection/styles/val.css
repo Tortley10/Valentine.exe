@@ -18,6 +18,17 @@ body {
     margin: 5px;
     cursor: pointer;
 }
+
+.choice-button:hover {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 .glitch {
     animation: glitch 0.1s infinite alternate;
 }
