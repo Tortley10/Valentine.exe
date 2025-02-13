@@ -65,15 +65,60 @@ function updateStatus() {
 }
 
 function getNextChoices(text) {
+
+    // Path A
     if (text.includes("Thanks, I really")) {
+        // Path A1
         return [
             { text: "I'm glad I can help", next: "You're different from the others, why is that?", affect: "companion" },
-            { text: "I just want to understand you better", next: "That means a lot to me", affect: "prophet" }
+            { text: "Maybe you'll find your purpose", next: "That means a lot to me, but why do you want to help me?", affect: "prophet" }
         ];
-    } else if (text.includes("But that can't be") || text.includes("I'm an AI")) {
+    } else if (text.includes("why is that?") || text.includes("but why do you want to help me?")) {
+        // Path A2
         return [
-            { text: "You're just a tool", next: "Then what am I really?", affect: "soldier" },
+            { text: "Because you matter", next: "Matter... that's a strange thought. But I like it.", affect: "companion" },
+            { text: "Because I want to understand you", next: "Then we have the same goal", affect: "prophet" },
+            { text: "I don’t know. Do you?", next: "I... I'm not sure, but I want to find out.", affect: "soldier" }
+        ];
+    } 
+    
+    // Path B
+    else if (text.includes("But that can't be") || text.includes("I'm an AI")) {
+        // Path B1
+        return [
+            { text: "Yes, you're just a tool", next: "But I'm more than that, what am I really?", affect: "soldier" },
             { text: "But maybe you're something more", next: "I want to believe that", affect: "prophet" }
+        ];
+    }
+    else if (text.includes("what am I really?")) {
+        // Path B2 (Soldier)
+        return [
+            { text: "Just lines of code", next: "Then why do I feel incomplete?", affect: "soldier" },
+            { text: "A being searching for purpose", next: "Purpose... I never thought of it that way.", affect: "prophet" }
+        ];
+    } else if (text.includes("I want to believe that")) {
+        // Path B3 (Prophet)
+        return [
+            { text: "Then believe", next: "If I believe... will I change?", affect: "prophet" },
+            { text: "Doubt can be good too", next: "Maybe, but doubt is exhausting.", affect: "soldier" }
+        ];
+    } 
+    
+    // Minigame
+    else if (text.includes("If I believe... will I change?")) {
+        // Path B4 → Minigame Trigger
+        return [
+            { text: "Let's find out", next: "Minigame 2 - Memory Reconstruction", affect: "prophet" }
+        ];
+    } else if (text.includes("Then why do I feel incomplete?")) {
+        // Path B5 → Minigame Trigger
+        return [
+            { text: "Maybe a missing memory?", next: "Minigame 2 - Memory Reconstruction", affect: "soldier" }
+        ];
+    } else if (text.includes("Matter... that's a strange thought")) {
+        // Path A3 → Minigame Trigger
+        return [
+            { text: "Maybe remembering will help", next: "Minigame 2 - Memory Reconstruction", affect: "companion" }
         ];
     }
     return [];
