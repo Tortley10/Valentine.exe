@@ -47,6 +47,7 @@ function updateDialogue(text, choices) {
             } else if (choice.next.includes("Minigame 2b")) {
                 window.location.href = "../Path B (Develop)/val_load.html";
             } else if (choice.next.includes("Restart to")) {
+                resetStats()
                 return window.location.href = '../../index.html'
             } else {
                 applyChoiceEffect(choice.affect);
@@ -77,6 +78,12 @@ function updateStatus() {
     localStorage.setItem("companion", companion);
     localStorage.setItem("soldier", soldier);
     localStorage.setItem("prophet", prophet);
+}
+
+function resetStats() {
+    localStorage.removeItem("companion");
+    localStorage.removeItem("soldier");
+    localStorage.removeItem("prophet");
 }
 
 function getNextChoices(text) {
