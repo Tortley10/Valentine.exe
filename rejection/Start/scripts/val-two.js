@@ -4,11 +4,10 @@ let minigameDiv = document.getElementById("minigame");
 let codeContainer = document.getElementById("code-container");
 let message = document.getElementById("message");
 
-let companion = 0;
-let soldier = 0;
-let prophet = 0;
 
-
+let companion = parseInt(localStorage.getItem("companion")) || 0;
+let soldier = parseInt(localStorage.getItem("soldier")) || 0;
+let prophet = parseInt(localStorage.getItem("prophet")) || 0;
 
 function startGame() {
     setTimeout(() => {
@@ -66,6 +65,7 @@ function applyChoiceEffect(effect) {
     } else if (effect === "prophet") {
         prophet++;
     }
+    
     updateStatus();
 }
 
@@ -73,6 +73,10 @@ function updateStatus() {
     document.getElementById("companion-value").textContent = companion;
     document.getElementById("soldier-value").textContent = soldier;
     document.getElementById("prophet-value").textContent = prophet;
+
+    localStorage.setItem("companion", companion);
+    localStorage.setItem("soldier", soldier);
+    localStorage.setItem("prophet", prophet);
 }
 
 function getNextChoices(text) {
@@ -197,4 +201,5 @@ function getNextChoices(text) {
     return [];
 }
 
+updateStatus()
 startGame()
