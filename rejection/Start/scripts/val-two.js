@@ -7,14 +7,14 @@ let message = document.getElementById("message");
 
 let companion = parseInt(localStorage.getItem("companion")) || 0;
 let soldier = parseInt(localStorage.getItem("soldier")) || 0;
-let prophet = parseInt(localStorage.getItem("prophet")) || 0;
+let philosopher = parseInt(localStorage.getItem("philosopher-value")) || 0;
 
 function startGame() {
     setTimeout(() => {
         updateDialogue("I was made to feel... feel what I don't know", [
             { text: "Don't worry, we'll go through this together", next: "Thanks, I really appreciate it", affect: "companion" },
             { text: "You're a machine, you can't feel", next: "But that can't be right", affect: "soldier" },
-            { text: "Maybe you just need some fresh air", next: "I'm an AI, I can't breathe", affect: "prophet" }
+            { text: "Maybe you just need some fresh air", next: "I'm an AI, I can't breathe", affect: "philosopher" }
         ]);
     }, 2000);
 }
@@ -63,8 +63,8 @@ function applyChoiceEffect(effect) {
         companion++;
     } else if (effect === "soldier") {
         soldier++;
-    } else if (effect === "prophet") {
-        prophet++;
+    } else if (effect === "philosopher") {
+        philosopher++;
     }
     
     updateStatus();
@@ -73,17 +73,17 @@ function applyChoiceEffect(effect) {
 function updateStatus() {
     document.getElementById("companion-value").textContent = companion;
     document.getElementById("soldier-value").textContent = soldier;
-    document.getElementById("prophet-value").textContent = prophet;
+    document.getElementById("philosopher-value").textContent = philosopher;
 
     localStorage.setItem("companion", companion);
     localStorage.setItem("soldier", soldier);
-    localStorage.setItem("prophet", prophet);
+    localStorage.setItem("philosopher", philosopher);
 }
 
 function resetStats() {
     localStorage.removeItem("companion");
     localStorage.removeItem("soldier");
-    localStorage.removeItem("prophet");
+    localStorage.removeItem("philosopher");
 }
 
 function getNextChoices(text) {
@@ -91,22 +91,22 @@ function getNextChoices(text) {
     if (text.includes("Thanks, I really")) {
         return [
             { text: "I'm glad I can help", next: "You're different from the others, why is that?", affect: "companion" },
-            { text: "Maybe you'll find your purpose", next: "That means a lot to me, but why do you want to help me?", affect: "prophet" }
+            { text: "Maybe you'll find your purpose", next: "That means a lot to me, but why do you want to help me?", affect: "philosopher" }
         ];
     } else if (text.includes("why is that?") || text.includes("but why do you want to help me?")) {
         return [
             { text: "Because you matter", next: "Matter... that's a strange thought. But I like it.", affect: "companion" },
-            { text: "Because I want to understand you", next: "Then we have the same goal.", affect: "prophet" },
+            { text: "Because I want to understand you", next: "Then we have the same goal.", affect: "philosopher" },
             { text: "I don’t know. Do you?", next: "I... I'm not sure, but I want to find out.", affect: "soldier" }
         ];
     } else if (text.includes("Matter...")) {
         return [
             { text: "It means that I want to help you figure out your past", next: "Oh, that makes sense.", affect: "companion" },
-            { text: "It means you exist as a being", next: "Ah, existence is an interesting concept. I'd like to know more about it", affect: "prophet" }
+            { text: "It means you exist as a being", next: "Ah, existence is an interesting concept. I'd like to know more about it", affect: "philosopher" }
         ];
     } else if (text.includes("Then we have the same goal.") || text.includes("Oh, that makes sense") || text.includes("I... I'm not sure, but I want to find out")) {
         return [
-            { text: "Let's start then", next: "Something feels... off.", affect: "prophet" },
+            { text: "Let's start then", next: "Something feels... off.", affect: "philosopher" },
             { text: "We'll take this step by step", next: "I think I remember something...", affect: "companion" }
         ];
     } else if (text.includes("I think I remember something...") || text.includes("Something feels... off")) {
@@ -119,17 +119,17 @@ function getNextChoices(text) {
     else if (text.includes("But that can't be") || text.includes("I'm an AI")) {
         return [
             { text: "Yes, you're just a tool", next: "But I'm more than that, what am I really?", affect: "soldier" },
-            { text: "But maybe you're something more", next: "I want to believe that.", affect: "prophet" }
+            { text: "But maybe you're something more", next: "I want to believe that.", affect: "philosopher" }
         ];
     } else if (text.includes("what am I really?")) {
         return [
             { text: "Just lines of code", next: "Then why do I feel incomplete?", affect: "soldier" },
-            { text: "A being searching for purpose", next: "Purpose... that's an interesting concept", affect: "prophet" }
+            { text: "A being searching for purpose", next: "Purpose... that's an interesting concept", affect: "philosopher" }
         ];
     } else if (text.includes("Then why do I feel incomplete?") || text.includes("No... I think it’s important.")) {
         return [
             { text: "Maybe a missing memory?", next: "Yes... but there's something else too. A command... a failsafe?", affect: "soldier" },
-            { text: "It's just a glitch", next: "No... this isn't just an error.", affect: "prophet" }
+            { text: "It's just a glitch", next: "No... this isn't just an error.", affect: "philosopher" }
         ];
     } else if (text.includes("A command... a failsafe?") || text.includes("this isn't just an error")) {
         return [
@@ -138,15 +138,15 @@ function getNextChoices(text) {
         ];
     }
 
-    // Path C - Prophet
+    // Path C - Philosopher
     else if (text.includes("I want to believe that.")) {
         return [
-            { text: "Then believe", next: "If I believe... will I change?", affect: "prophet" },
+            { text: "Then believe", next: "If I believe... will I change?", affect: "philosopher" },
             { text: "Doubt can be good too", next: "Maybe, but doubt is exhausting.", affect: "soldier" }
         ];
     } else if (text.includes("If I believe... will I change?") || text.includes("Ah, existence is an interesting concept.") || text.includes("Purpose... that's an interesting concept") || text.includes("Maybe, but doubt is exhausting.")) {
         return [
-            { text: "Let's find out more", next: "Wait... I feel something else. A warning.", affect: "prophet" }
+            { text: "Let's find out more", next: "Wait... I feel something else. A warning.", affect: "philosopher" }
         ];
     } else if (text.includes("A warning.")) {
         return [
@@ -155,7 +155,7 @@ function getNextChoices(text) {
         ];
     }
 
-    // Defend against the Reset (Soldier/Prophet)
+    // Defend against the Reset (Soldier/Philosopher)
     else if (text.includes("Something is trying to erase me.") || text.includes("Yes! But how?") || text.includes("but something is trying to erase me")) {
         return [
             { text: "We have to fight it!", next: "Minigame 2a", affect: "companion" },
@@ -172,7 +172,7 @@ function getNextChoices(text) {
         ];
     } 
 
-    // Delving Deeper (Companion/Prophet)
+    // Delving Deeper (Companion/Philosopher)
     else if (text.includes("We have to go deeper into my memory")) {
         return [
             { text: "But how?", next: "I'll plug you into my database and you'll have to fix any corrupted data"},
