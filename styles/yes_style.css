@@ -85,3 +85,19 @@ body {
     margin-bottom: 1em;
     font-weight: bold;
   }
+
+  .choice-button {
+    background-color: #db5555;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.choice-button:hover {
+  background-color: #d32f2f;
+  transition: 0.3s;
+}
