@@ -18,30 +18,5 @@
         </div>
         <p class="ending">Ending 1/7: Acceptance</p>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const audio = document.getElementById("backgroundMusic");
-
-            function tryPlay() {
-                audio.play().then(() => {
-                    console.log("Autoplay successful.");
-                }).catch(() => {
-                    console.warn("Autoplay blocked. Adding event listener.");
-                    document.body.addEventListener("click", () => audio.play(), { once: true });
-                });
-            }
-
-            // Try to play when the page is visible
-            if (document.visibilityState === "visible") {
-                tryPlay();
-            } else {
-                document.addEventListener("visibilitychange", function () {
-                    if (document.visibilityState === "visible") {
-                        tryPlay();
-                    }
-                }, { once: true });
-            }
-        });
-    </script>
 </body>
 </html>

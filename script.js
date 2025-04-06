@@ -18,7 +18,7 @@ let love_count = 0
 function handleNoClick() {
     love_count += 1
     if (love_count == 10) {
-        window.location.href = "no_page.html";
+        window.location.href = "rejected.html";
     } else {
         const noButton = document.querySelector('.no-button');
         const yesButton = document.querySelector('.yes-button');
